@@ -11,40 +11,52 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 /**
  *
  * @author ildon
  */
-public class Dizionario {
-    
-    public static void main (String[]args){
-    
-    BufferedReader br = null;
-    String line;
-    FileReader fr;        
-    ArrayList <String> list = new ArrayList<String>();      
-
-    
+public class Dizionario {   
+    private static BufferedReader br = null;
+    private static String line;
+    private static FileReader fr;        
+    private static ArrayList <String> list = new ArrayList<String>();       
+    private void Dizionario(BufferedReader br,String line, FileReader fr, ArrayList <String> list ) {
+    	this.br = br;
+    	this.fr = fr;
+    	this.line = line;
+    	this.list = list;
+    }
+    public ArrayList<String> CreaDizionario(){
         try {           
-            br = new BufferedReader(new FileReader("it_IT.dic"));
-            
+            br = new BufferedReader(new FileReader("it_IT.dic"));            
             while((line = br.readLine()) != null  ){
                 if (line.startsWith("/")) continue;
-                String[] result;
-		 list.add(line.substring(0, line.indexOf('/')));
+                int c =line.indexOf('/');               
+                if (c<0){
+                list.add(line);             
+                }
+                else{
+		 list.add(line.substring(0, c));
                 
-                
-                
-            
-            }
-            System.out.println(list);
-           
+                }         
+            }          
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+		return list;   
     }
+    public static void main(String[] args) {
+    	Dizionario d = new Dizionario();
+    	ArrayList<String> lista = d.CreaDizionario();
+    	System.out.println(lista);
+    }
+
+	
 }
+
 

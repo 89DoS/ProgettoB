@@ -6,12 +6,22 @@
 package com.mycompany.client_server;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
+import java.util.ArrayList;
+import java.util.Collections;
+import static javafx.util.Duration.seconds;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -39,6 +49,8 @@ public class Gioco extends javax.swing.JFrame {
         String filepath = "tick.wav";
         PlayMusic musicObject = new PlayMusic();
         musicObject.playMusic(filepath);
+        
+        
         
        
         
@@ -151,10 +163,11 @@ public class Gioco extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         timer = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jLabel_minimizza = new javax.swing.JLabel();
         jLabel_chiudi = new javax.swing.JLabel();
         jPanel_titolo = new javax.swing.JPanel();
@@ -361,6 +374,11 @@ public class Gioco extends javax.swing.JFrame {
         jButton1.setText("INVIO");
         jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(0, 102, 0));
@@ -390,11 +408,6 @@ public class Gioco extends javax.swing.JFrame {
         jLabel19.setForeground(new java.awt.Color(0, 102, 0));
         jLabel19.setText("PUNTI:");
 
-        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(0, 102, 0));
-        jLabel20.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jLabel20.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 0), 2));
-
         jLabel21.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(0, 102, 0));
         jLabel21.setText("PAROLE TROVATE:");
@@ -408,6 +421,30 @@ public class Gioco extends javax.swing.JFrame {
         jLabel23.setForeground(new java.awt.Color(0, 102, 0));
         jLabel23.setText("TEMPO:");
 
+        jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 0), 2));
+        jTable1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTable1.setForeground(new java.awt.Color(0, 102, 0));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                ""
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jTable1.setGridColor(new java.awt.Color(0, 102, 0));
+        jTable1.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        jTable1.setSelectionForeground(new java.awt.Color(0, 102, 51));
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -417,12 +454,12 @@ public class Gioco extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                            .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
+                                .addGap(19, 19, 19)
                                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -471,8 +508,8 @@ public class Gioco extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -652,9 +689,52 @@ public class Gioco extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextField1FocusLost
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       //utilizzo la classe dizionario per leggere il file .dic e confrontarlo con la parola inserita
+        Dizionario d = new Dizionario();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        jTable1.setRowHeight(30);      
+	ArrayList<String> lista = d.CreaDizionario();     
+        ArrayList<String> parole = new ArrayList<String>();     
+        String parola = jTextField1.getText();
+        String rowData[]= new String[1];
+        
+        boolean uguale = lista.stream().anyMatch(parola::equalsIgnoreCase);
+           if (uguale == true ){                 
+                     parole.add(parola);  
+                      for (int i = 0; i < parole.size(); i++) { 
+                    
+                   rowData[0]= parole.get(i);
+                        model.addRow(rowData);
+                                         
+                        }                
+              
+                }
+                else{
+                    JLabel labelM = new JLabel("Parola non valida");
+                    labelM.setFont(new Font("Tahoma", Font.ITALIC, 17));
+                    labelM.setForeground(Color.decode("#276F08"));
+                    JOptionPane jop = new JOptionPane();
+                    jop.setMessageType(JOptionPane.PLAIN_MESSAGE);
+                    jop.setMessage(labelM);               
+                    JDialog dialog = jop.createDialog(null, "parola non valida");
+                
+                 new Thread(new Runnable() {
+		@Override
+		public void run() {
+			try {
+				Thread.sleep(1000);
+			} catch (Exception e) {
+			}
+			dialog.dispose();
+		}
+	}).start();
+        
+	dialog.setVisible(true);
+                
+            }                
+               
+    }//GEN-LAST:event_jButton1ActionPerformed
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -702,7 +782,6 @@ public class Gioco extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
@@ -720,6 +799,8 @@ public class Gioco extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel_titolo;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel timer;
     // End of variables declaration//GEN-END:variables
